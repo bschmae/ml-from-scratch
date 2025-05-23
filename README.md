@@ -1,6 +1,6 @@
 # ml-from-scratch
 
-1. Implement Linear Regression using only NumPy — no ML libraries.
+1. Implement Linear Regression — no ML libraries.
 
 Learn:
 How a model learns weights (coefficients)
@@ -18,7 +18,7 @@ How to evaluate predictions
         using to calculate your estimate is the independent variable or regressor.
 
         Linear regression is a supervised learning algorithm used to 
-        predict a continuous value from one or more input features.  What does 
+        predict a continuous value from one or more input features. What does 
         that mean? It learns from the labelled datasets and maps the data points 
         to the most optimized linear functions that can be used for prediction 
         on new datasets.
@@ -32,9 +32,6 @@ How to evaluate predictions
 
         For multiple features (multivariate): ŷ = X ⋅ w + b
         • X : input matrix
-
-        Note: Different from multivariate linear regression, which uses multiple
-        dependent variables instead of one to model relationships.
 
     II. Goal of Linear Regression
         If the goal is minimizing prediction error in prediction or
@@ -99,8 +96,10 @@ How to evaluate predictions
         • α (alpha) is the learning rate
 
         What is the learning rate? 
-        The learning rate α determines how much the model’s parameters (w and b) are adjusted in the direction of the negative gradient during each iteration of gradient descent.
-        α acts as a scaling factor, controlling how large or small each step is.
+        The learning rate α determines how much the model’s parameters (w and b)
+        are adjusted in the direction of the negative gradient during each
+        iteration of gradient descent. α acts as a scaling factor, controlling 
+        how large or small each step is.
 
         The negative gradient (-∂(MSE)/∂w, -∂(MSE)/∂b) ensures we move toward
         the minimum of the loss function.
