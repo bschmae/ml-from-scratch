@@ -79,8 +79,8 @@ How to evaluate predictions
         partial derivative with respect to bias:
         ∂(MSE)/∂b = (-2/n) * Σ (y - ŷ)
     
-        Or more beginner friendly explanation, gradient indicates the "slope" 
-        of the loss function with respect to each parameter, guiding the model 
+        Or, more beginner friendly explanation, gradient indicates the "slope"
+        of the loss function with respect to each parameter, guiding the model
         to adjust weights to reduce error.
 
         The negative gradient points in the direction of the steepest decrease
@@ -97,6 +97,10 @@ How to evaluate predictions
         • w is the weight
         • b is the bias
         • α (alpha) is the learning rate
+
+        What is the learning rate? 
+        The learning rate α determines how much the model’s parameters (w and b) are adjusted in the direction of the negative gradient during each iteration of gradient descent.
+        α acts as a scaling factor, controlling how large or small each step is.
 
         The negative gradient (-∂(MSE)/∂w, -∂(MSE)/∂b) ensures we move toward
         the minimum of the loss function.
