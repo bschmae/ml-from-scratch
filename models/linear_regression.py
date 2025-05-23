@@ -31,8 +31,8 @@ class UnivariateLinearRegression:
 
             for i in range(n_samples):
                 error = y[i] - y_pred[i]
-                dw = error * X[i]
-                db = error
+                dw += error * X[i]
+                db += error
 
             dw = (-2 / n_samples) * dw
             db = (-2 / n_samples) * db
