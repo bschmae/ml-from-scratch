@@ -6,7 +6,7 @@ Tic-Tac-Toe AI
     • Finite: the game as a limited number of possible states and moves and 
     it always ends. 
 
-    • Fully observable: if an agent's has access to the complete state 
+    • Fully observable: if an agent has access to the complete state 
     of the environment at each point in time, then we say the task environment
     is fully observable.
 
@@ -14,18 +14,18 @@ Tic-Tac-Toe AI
     always zero.
 
     It is a 3x3 turn based game between two players. The game ends when:
-    - One player aligns trhee symbols horizaontally, vertically, or diagonally.
+    - One player aligns three symbols horizaontally, vertically, or diagonally.
     - All cells are filled (draw).
 
 2. State Representation
     A state in this context is the entire condition of the game at a moment in time
 
     The board is represented as a 3x3 grid or a 9-element array:
+    - 'O' for player O
     - 'X' for player X
-    - 'Y' for player Y
-    - ' ' for an empty cell
+    - '' for an empty cell
     
-    Whose turn it is: 'X' or 'Y'
+    Whose turn it is: 'O' or 'X'
 
     Each move leads to a new state. The full set of these states and
     transitions forms what’s called the state space.
