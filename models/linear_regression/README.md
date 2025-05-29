@@ -19,16 +19,18 @@ How to evaluate predictions
 
         Linear regression is a supervised learning algorithm used to 
         predict a continuous value from one or more input features. What does 
-        that mean? It learns from the labelled datasets and maps the data points 
+        that mean? It learns from the labeled datasets and maps the data points 
         to the most optimized linear functions that can be used for prediction 
         on new datasets.
 
         The Linear Model
         For 1 feature (univariate): ŷ = w ⋅ x + b
         • ŷ : predicted output
-        • w : weight (slope of the line)
+        • w : weight (slope of the line), represents the rate of change of the
+              predicted value of ŷ with respect to the input x
         • x : input feature
-        • b : bias (y-intercept)
+        • b : bias (y-intercept), represents the predicated value of y when
+              x = 0
 
         For multiple features (multivariate): ŷ = X ⋅ w + b
         • X : input matrix
