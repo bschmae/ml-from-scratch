@@ -27,7 +27,7 @@ class RuleBasedAI:
 
                         board[i][j] = ''
 
-            # 2. Check if AI can block opponent's wi
+            # 2. Check if AI can block opponent's win
             for i, row in enumerate(board):
                 for j, cell in enumerate(row):
                     if cell ==  '':
