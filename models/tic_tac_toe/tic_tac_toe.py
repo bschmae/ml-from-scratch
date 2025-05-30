@@ -1,3 +1,12 @@
+from rule_based_model import RuleBasedAI
+import utils as utils
+import random
+import time
+
+SYMBOL_MAP = {
+    '1' : 'O',
+    '2' : 'X'
+}
 class TicTacToe:
     def __init__(self):
         self.board = [
@@ -7,7 +16,7 @@ class TicTacToe:
     ]
         self.player_x = 'X'
         self.player_o = 'O'
-        self.player_turn = 'X'
+        self.player_turn = 'O'
 
 
     def print_board(self):
@@ -30,11 +39,14 @@ class TicTacToe:
 
     def check_if_valid_move(self, move):
         valid_entries = ['1', '2', '3']
+
+        if move is None:
+            return False
         parts = move.split()
 
         for part in parts:
             if part not in valid_entries:
-                print('Must enter a number between 1-3 for row and column')
+                print('Must enter a number between 1-3 for row and column', parts)
                 return False
 
         if len(parts) != 2:
@@ -77,40 +89,38 @@ class TicTacToe:
 
         return is_draw
 
-    def check_if_winner(self):
-        # Check horizontally
-        for row in self.board:
-            if row[0] != '' and row[0] == row[1] == row[2]:
-                return True
+    def get_player_move(self, ai):
+        move = None
+        if self.player_turn == ai.get_ai_symbol():
+            print(f'Player {ai.get_ai_symbol()} is thinking...')
+            num = random.uniform(1, 3)
+            time.sleep(num)
+            move = ai.make_move(board=self.board)
+        else:
+            move = self.get_player_input()
 
-        # Check vertically
-        for col in range(3):
-            if self.board[0][col] != '' and \
-                self.board[0][col] == self.board[1][col] == self.board[2][col]:
-                return True
-
-        # Check diagonally
-        center = self.board[1][1]
-        if center != '':
-            if center == self.board[0][0] == self.board[2][2]:
-                return True
-            if center == self.board[2][0] == self.board[0][2]:
-                return True
-
-        return False
-
+        return move
 
     def play_game(self):
         print('Player O goes first.')
 
+        number = random.choice(['1', '2'])
+        ai_symbol = SYMBOL_MAP[number]
+        opponent_symbol = 'O' if ai_symbol == 'X' else 'X'
+        ai = RuleBasedAI(
+            ai_symbol=ai_symbol,
+            opponent_symbol=opponent_symbol
+            )
+
         while True:
             self.print_board()
+            print('------------')
 
-            move = self.get_player_input()
+            move = self.get_player_move(ai)
             valid_move = self.check_if_valid_move(move)
 
             while not valid_move:
-                move = self.get_player_input()
+                move = self.get_player_move(ai)
                 if self.check_if_valid_move(move):
                     break
 
@@ -122,11 +132,10 @@ class TicTacToe:
                 print('The game is a draw!')
                 return
 
-            is_winner = self.check_if_winner()
+            is_winner = utils.check_if_winner(self.board)
             if is_winner:
                 self.print_board()
                 print(f'Player {self.player_turn} wins!')
                 return
 
             self.update_player_turn()
-
