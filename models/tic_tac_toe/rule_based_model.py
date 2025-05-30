@@ -1,4 +1,6 @@
 import utils as utils
+import random 
+
 
 CORNERS = [[0, 0], [0, 2], [2, 0], [2, 2]]
 EDGES = [[0, 1], [1, 0], [2, 1], [1, 2]]
@@ -40,8 +42,10 @@ class RuleBasedAI:
                         board[i][j] = ''
 
             # 3. Take center if available
-            if board[1][1] == '':
-                return '2 2'
+            # Doing this 50% of the time just to mix things up
+            if random.choice([True, False]):
+                if board[1][1] == '':
+                    return '2 2'
 
             # 4. Take a corner
             for r, c in CORNERS:

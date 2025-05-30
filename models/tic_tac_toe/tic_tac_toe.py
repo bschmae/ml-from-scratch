@@ -7,6 +7,8 @@ SYMBOL_MAP = {
     '1' : 'O',
     '2' : 'X'
 }
+
+
 class TicTacToe:
     def __init__(self):
         self.board = [
