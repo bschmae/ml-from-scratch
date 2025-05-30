@@ -45,8 +45,8 @@ Tic-Tac-Toe AI
         - actions and decisions are guided by a set of predefined rules in
         lieu of subjective judgements.
 
-        Simple human like rules:
-            • Win in you can.
+        Simple human like rules: rule prioritization
+            • Win if you can.
             • Block your opponent if they can win.
             • Take the center if it's open.
             • Then corners.
