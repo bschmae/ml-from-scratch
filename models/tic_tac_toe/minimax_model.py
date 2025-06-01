@@ -6,6 +6,9 @@ class MinimaxAI():
         self.ai_symbol = ai_symbol
         self.human_symbol = 'O' if ai_symbol == 'X' else 'X'
 
+    def get_ai_symbol(self):
+        return self.ai_symbol
+
     def make_move(self, board):
         is_maximizing = True if self.ai_symbol == 'O' else False
         minimax_obj = self.minimax(board, is_maximizing)
@@ -14,7 +17,7 @@ class MinimaxAI():
 
     def minimax(self, board, is_maximizing):
         best_score = float('-inf') if is_maximizing else float('inf')
-        best_move = []
+        best_move = ''
         legal_moves = []
         win_object = utils.check_if_winner(board)
 
@@ -38,16 +41,16 @@ class MinimaxAI():
 
             board_copy[move[0]][move[1]] = player_symbol
 
-            child_score = self.minimax(board_copy, not is_maximizing)
+            child_score = self.minimax(board_copy, not is_maximizing)['bestScore']
 
             if is_maximizing:
                 if child_score > best_score:
                     best_score = child_score
-                    best_move = [move[0], move[1]]
+                    best_move = f'{move[0] + 1} {move[1] + 1}'
             else:
                 if child_score < best_score:
                     best_score = child_score
-                    best_move = [move[0], move[1]]
+                    best_move = f'{move[0] + 1} {move[1] + 1}'
 
         return {
             'bestScore': best_score,
