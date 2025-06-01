@@ -10,9 +10,7 @@ class MinimaxAI():
         return self.ai_symbol
 
     def make_move(self, board):
-        is_maximizing = True if self.ai_symbol == 'O' else False
-        minimax_obj = self.minimax(board, is_maximizing)
-
+        minimax_obj = self.minimax(board, True)
         return minimax_obj['bestMove']
 
     def minimax(self, board, is_maximizing):
