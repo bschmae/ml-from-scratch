@@ -1,13 +1,7 @@
 from rule_based_model import RuleBasedAI
 import utils as utils
-import random
 import time
-
-SYMBOL_MAP = {
-    '1' : 'O',
-    '2' : 'X'
-}
-
+import random
 
 class TicTacToe:
     def __init__(self):
@@ -20,16 +14,13 @@ class TicTacToe:
         self.player_o = 'O'
         self.player_turn = 'O'
 
-
     def print_board(self):
         for _ in self.board:
             print(_)
 
-
     def update_board(self, move):
         row, col = map(lambda x: int(x) - 1, move.split())
         self.board[row][col] = self.player_turn
-
 
     def get_player_input(self):
         print(f'Player {self.player_turn}, enter your move (row and column):')
@@ -37,7 +28,6 @@ class TicTacToe:
         move = input('>> ').strip()
 
         return move
-
 
     def check_if_valid_move(self, move):
         valid_entries = ['1', '2', '3']
@@ -70,13 +60,11 @@ class TicTacToe:
 
         return True
 
-
     def update_player_turn(self):
         if self.player_turn == self.player_x:
             self.player_turn = self.player_o
         else:
             self.player_turn = self.player_x
-
 
     def check_if_draw(self):
         board = self.board
@@ -103,16 +91,8 @@ class TicTacToe:
 
         return move
 
-    def play_game(self):
+    def play_game(self, ai):
         print('Player O goes first.')
-
-        number = random.choice(['1', '2'])
-        ai_symbol = SYMBOL_MAP[number]
-        opponent_symbol = 'O' if ai_symbol == 'X' else 'X'
-        ai = RuleBasedAI(
-            ai_symbol=ai_symbol,
-            opponent_symbol=opponent_symbol
-            )
 
         while True:
             self.print_board()
@@ -134,7 +114,7 @@ class TicTacToe:
                 print('The game is a draw!')
                 return
 
-            is_winner = utils.check_if_winner(self.board)
+            is_winner = utils.check_if_winner(self.board)['isWinner']
             if is_winner:
                 self.print_board()
                 print(f'Player {self.player_turn} wins!')
