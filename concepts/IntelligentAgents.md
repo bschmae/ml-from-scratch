@@ -47,7 +47,7 @@ Formal definition of a **rational agent**
 
 ---
 
-## III. The Nature of Environments
+### III. The Nature of Environments
 
 A **task environment** is the problem setting in which a rational agent operates.
 
@@ -73,3 +73,93 @@ A **task environment** is the problem setting in which a rational agent operates
 | | *Unknown* | The agent must learn or infer the environment’s dynamics from experience. |
 
 An accurate characterization of the task environment guides the choice of algorithms and representations, helping to ensure that the agent’s design is both efficient and effective.
+
+### IV. The Structure of Agents
+
+**Agent architecture** is the physical computing system with sensors and actuators.  
+**Agent program** is the software that implements the agent function.
+
+> `agent = architecture + program`
+
+---
+
+### Table-Driven Agents
+
+The **table-driven approach** to agent construction involves creating a lookup table that maps every possible percept sequence to an action. While this can theoretically produce a functional agent, it is ultimately **impractical**.
+
+Let `P` be the set of possible percepts and `T` be the agent's lifetime (i.e. the total number of percepts it will receive). The lookup table would need to contain:
+
+> ∑ (from t = 1 to T) |P|^t entries
+
+Even in relatively simple environments, this results in a table of **astronomical size**, making storage and computation infeasible.
+
+Despite its impracticality, the table-driven model is instructional. It highlights a central challenge in AI:
+
+> *How can we design a compact program that generates rational behavior, without relying on an unmanageably large lookup table?*
+
+---
+
+### Simple Reflex Agents
+
+These agents ignore percept history and base their decisions solely on the current percept. The mapping from percepts to actions is based on **condition-action rules**, typically written as:
+
+> `if some condition x then do action y`
+
+These rules can apply beyond simple reflex agents and may also be **learned or hard-coded** in more complex models.
+
+---
+
+### Model-Based Reflex Agents
+
+Model-based reflex agents maintain an **internal state** that depends on the history of percepts. This helps handle **partial observability** by keeping track of parts of the world the agent cannot currently perceive.
+
+To do this effectively, these agents rely on:
+
+- A **transition model**: Knowledge of how the world changes over time.
+  - How the world changes independently of the agent.
+  - How the agent’s actions affect the environment.
+
+- A **sensor model**: Knowledge of how the agent’s percepts relate to the actual world state.
+
+These models together help the agent update its internal state and act more intelligently.
+
+---
+
+### Goal-Based Agents
+
+In addition to internal models, goal-based agents incorporate **goals**—desirable outcomes that guide decision-making.
+
+- Sometimes goals can be achieved with a single action.
+- More often, achieving a goal requires evaluating **action sequences** or considering **long-term consequences**.
+
+This gives rise to the fields of **search** and **planning**, which focus on finding sequences of actions that achieve the agent's goals.
+
+---
+
+### Utility-Based Agents
+
+Goals distinguish between “good” and “bad” states but are too crude for many complex situations. Instead, utility-based agents use a **utility function**, which internalize the performance meassure for various states or outcomes.
+
+Utility functions enable:
+
+- Choosing between multiple ways to achieve a goal.
+- Making decisions under **uncertainty**, where multiple outcomes are possible.
+
+A rational agent chooses the action that maximizes **expected utility**—the average utility value of all possible outcomes weighted by their probabilities.
+
+---
+
+### Learning Agents
+
+Learning enables agents to improve their behavior over time, especially in unknown or changing environments.
+
+A learning agent typically includes four key components:
+
+1. **Learning element** – Makes improvements to the agent’s behavior.
+2. **Performance element** – Chooses external actions based on current knowledge.
+3. **Critic** – Evaluates the agent's performance and provides feedback.
+4. **Problem generator** – Suggests exploratory actions to gather new, informative experiences. The problem generator is important because it allows the agent to explore and perhaps do some suboptimal actions in the short term, which could lead to discoveries that lead to much better actions in the long term.
+
+> Learning involves adjusting these components to better align with the feedback received from the environment, ultimately improving the agent’s overall performance.
+
+---
