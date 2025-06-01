@@ -23,7 +23,7 @@ class RuleBasedAI:
                     if cell ==  '':
                         board[i][j] = self.ai_symbol
 
-                        if utils.check_if_winner(board):
+                        if utils.check_if_winner(board)['isWinner']:
                             board[i][j] = ''
                             return f'{i + 1} {j + 1}'
 
@@ -35,7 +35,7 @@ class RuleBasedAI:
                     if cell ==  '':
                         board[i][j] = self.opponent_symbol
 
-                        if utils.check_if_winner(board):
+                        if utils.check_if_winner(board)['isWinner']:
                             board[i][j] = ''
                             return f'{i + 1} {j + 1}'
 
