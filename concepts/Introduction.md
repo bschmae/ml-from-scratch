@@ -48,7 +48,7 @@ According to the **standard model of AI**, the focus is primarily on **rational 
 
 ---
 
-## Is AI science or engineerin?
+## Is AI science or engineering?
 AI is both a science and engineering. Computer engineering is useful in the realm of AI in that it provides the ever-more powerful machines that make AI possible, and software engineering makes them more usable. The domain of AI is a science in that in embodies many different areas of research and experimentation to learn more about the nature of intelligence in general. So yes, AI is both because it requires understanding and constructing.
 
 ---
@@ -75,6 +75,7 @@ The latter statement is partially true but it does not imply the former. Compute
 The former implication is flawed because it assumes a narrow definition of intelligence. If intelligence means hard-coding, then yes — computers aren't intelligent. But if intelligence includes learning, adapting, making decisions, then modern AI systems show forms of intelligence.
 
 **"Surely animals cannot be intelligent — they can do only what their genes tell them.”**
+
 This statement oversimplifies animal behavior. While it's true that simpler animals often operate based on instinctual, genetically programmed behavior, this doesn't hold for all species. There is a broad spectrum of complexity in the animal kingdom, and with it comes a range of cognitive abilities.
 
 In more advanced species we see clear evidence of intelligence. These animals can learn from experience, solve novel problems, adapt to new environments, and make decisions that go beyond simple genetic programming.
