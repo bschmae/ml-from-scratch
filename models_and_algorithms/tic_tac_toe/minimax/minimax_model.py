@@ -1,7 +1,7 @@
 from tic_tac_toe import utils
 import copy
 
-class MinimaxAI():
+class MinimaxModel():
     def __init__(self, ai_symbol):
         self.ai_symbol = ai_symbol
         self.human_symbol = 'O' if ai_symbol == 'X' else 'X'

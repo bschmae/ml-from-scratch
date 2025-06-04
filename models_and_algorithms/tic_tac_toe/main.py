@@ -1,6 +1,7 @@
 from tic_tac_toe import TicTacToe
-from rule_based.rule_based_model import RuleBasedAI
-from minimax.minimax_model import MinimaxAI
+from rule_based.rule_based_model import RuleBasedModel
+from minimax.minimax_model import MinimaxModel
+from q_learning.q_learning import QLearningAlgorithm
 import random
 
 SYMBOL_MAP = {
@@ -25,13 +26,13 @@ def main():
 
     ai = None
     if choice == '1':
-        ai = RuleBasedAI(
+        ai = RuleBasedModel(
             ai_symbol=ai_symbol,
             opponent_symbol=human_symbol
         )
 
     if choice == '2':
-        ai = MinimaxAI(ai_symbol=ai_symbol)
+        ai = MinimaxModel(ai_symbol=ai_symbol)
 
     game.play_game(ai)
 
