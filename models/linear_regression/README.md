@@ -1,5 +1,3 @@
-# ml-from-scratch
-
 1. Implement Linear Regression — no ML libraries.
 
 Learn:

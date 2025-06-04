@@ -1,4 +1,4 @@
-import utils as utils
+from tic_tac_toe import utils
 import random 
 
 CORNERS = [[0, 0], [0, 2], [2, 0], [2, 2]]

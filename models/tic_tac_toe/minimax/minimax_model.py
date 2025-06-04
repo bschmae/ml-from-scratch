@@ -1,4 +1,4 @@
-import utils as utils
+from tic_tac_toe import utils
 import copy
 
 class MinimaxAI():

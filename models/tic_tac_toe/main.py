@@ -1,7 +1,7 @@
 from tic_tac_toe import TicTacToe
-from rule_based_model import RuleBasedAI
+from rule_based.rule_based_model import RuleBasedAI
+from minimax.minimax_model import MinimaxAI
 import random
-from minimax_model import MinimaxAI
 
 SYMBOL_MAP = {
     '1' : 'O',
