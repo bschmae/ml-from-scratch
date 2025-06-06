@@ -95,14 +95,13 @@ Q-Learning models follow an iterative process where various components interact 
 
 **II. Exploration:**
    The agent selects an action based on the ϵ-greedy policy, balancing between:
-   - **Exploration:** Choosing a random action with probability \( \epsilon \).
-   - **Exploitation:** Choosing the action with the highest Q-value with probability \( 1 - \epsilon \).
+   - **Exploration:** Choosing a random action with probability ( epsilon ).
+   - **Exploitation:** Choosing the action with the highest Q-value with probability \( 1 - epsilon \).
 
 **III. Action and Update:**
    - The agent performs the selected action.
    - Observes the next state and receives a reward.
    - Updates the Q-value for the state-action pair using the Temporal Difference (TD) update rule
-
 
 **IV. Iteration:**
    The process repeats for many episodes until the agent converges on an optimal policy.

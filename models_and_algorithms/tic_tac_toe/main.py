@@ -17,6 +17,7 @@ def main():
     print('Please select your opponent:')
     print('1. Rule Based AI')
     print('2. Minimax AI')
+    print('3. QLearning')
 
     number = random.choice(['1', '2'])
     ai_symbol = SYMBOL_MAP[number]
@@ -30,9 +31,14 @@ def main():
             ai_symbol=ai_symbol,
             opponent_symbol=human_symbol
         )
-
-    if choice == '2':
+    elif choice == '2':
         ai = MinimaxModel(ai_symbol=ai_symbol)
+
+    elif choice == '3':
+        ai = QLearningAlgorithm(ai_symbol=ai_symbol)
+    else:
+        print('Invalid input, exiting program.')
+        return
 
     game.play_game(ai)
 
