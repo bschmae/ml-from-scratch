@@ -1,4 +1,3 @@
-from rule_based_model import RuleBasedAI
 import utils as utils
 import time
 import random

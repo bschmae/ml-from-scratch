@@ -54,7 +54,7 @@ Tic-Tac-Toe AI
         
         fast and simple, but not flexible or adaptive.
     
-    (b) Search-Based Strategy (MiniMax)
+    (b) Search-Based Strategy (Minimax)
         This approach simulates the rest of the game from the current state.
 
         • The AI plays out all possible moves both it and the opponent could
@@ -64,12 +64,12 @@ Tic-Tac-Toe AI
         • Then it chooes the move that leads to the best, worst-case outcome.
 
         This is a brute-force logical strategy that guarantees optimal play.
-        If both players use MiniMax, the game will always end in a draw.
+        If both players use Minimax, the game will always end in a draw.
 
     (c) Learning-Based Strategy (Reinforcement Learning)
         This is where the AI learns from experience.
 
-        • It plays games repeatedly - agaisnt itself or others.
+        • It plays games repeatedly - against itself or others.
         • Starts out making random moves.
         • Over time, it learns which moves lead to better outcomes.
         • It builds a policy (mental model) for how to act in different

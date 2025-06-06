@@ -97,6 +97,17 @@ Despite its impracticality, the table-driven model is instructional. It highligh
 
 > *How can we design a compact program that generates rational behavior, without relying on an unmanageably large lookup table?*
 
+**Pseudocode**
+
+**function** TABLE-DRIVEN-AGENT(*percept*) **returns** an action
+  **persistent**: *percepts*, a sequence, intitially empty *table*,
+              a table of actions, indexed by percept sequences, initially
+              fully specified
+
+  append *percept* to the end of *percepts*
+  *action* <-- LOOKUP(*percepts*, *table*)
+  **return** *action*
+
 ---
 
 ### Simple Reflex Agents
@@ -106,6 +117,16 @@ These agents ignore percept history and base their decisions solely on the curre
 > `if some condition x then do action y`
 
 These rules can apply beyond simple reflex agents and may also be **learned or hard-coded** in more complex models.
+
+**Pseudocode**
+
+**function** SIMPLE-REFLEX-AGENT(*percept*) **returns** an action
+  **persistent**: *rules*, a set of condition-action rules
+
+  *state* <-- INTERPRET-INPUT(*percept*)
+  *rule* <-- RULE-MATCHING(*state*, *rules*)
+  *action* <-- *rule*.ACTION
+  **return** *action*
 
 ---
 
@@ -122,6 +143,17 @@ To do this effectively, these agents rely on:
 - A **sensor model**: Knowledge of how the agent’s percepts relate to the actual world state.
 
 These models together help the agent update its internal state and act more intelligently.
+
+**Pseudocode**
+
+**function** MODEL-BASED-REFLEX-AGENT(percept) **returns** an action
+  **persistent**: *state*, the agent's current conception of the world state, *transition_model*, a description of how the next state depends on the current state and action, *sensor_model*, a description of how the current world state is reflected in the agent's percepts
+  *rules*, a set of condition-action rules, *action*, the most recent action, intially none
+
+  *state* <-- UPDATE-STATE(*state*, *action*, *percept*, *transition_model*, *sensor_model*)
+  *rule* <-- RULE-MATCH(*state*, *rules*)
+  *action* <-- *rule*.ACTION
+  **return** *action*
 
 ---
 

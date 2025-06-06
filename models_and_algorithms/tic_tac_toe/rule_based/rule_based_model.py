@@ -1,10 +1,10 @@
-import utils as utils
+from tic_tac_toe import utils
 import random 
 
 CORNERS = [[0, 0], [0, 2], [2, 0], [2, 2]]
 EDGES = [[0, 1], [1, 0], [2, 1], [1, 2]]
 
-class RuleBasedAI:
+class RuleBasedModel:
     def __init__(self, ai_symbol, opponent_symbol):
         self.is_ai_turn = False
         self.ai_symbol = ai_symbol
