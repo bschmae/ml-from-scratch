@@ -6,8 +6,8 @@ A collection of fun, educational machine learning models I've built from scratch
 
 | Model              | Description                          | Docs |
 |-------------------|--------------------------------------|------|
-| Linear Regression | Predicting values with a straight line | [View](models/linear_regression/README.md) |
-| Tic-Tac-Toe | Exploring several models to play Tic-Tac-Toe | [View](models/tic_tac_toe/README.md) |
+| Linear Regression | Predicting values with a straight line | [View](models_and_algorithms/linear_regression/README.md) |
+| Tic-Tac-Toe | Exploring several models to play Tic-Tac-Toe | [View](models_and_algorithms/tic_tac_toe/README.md) |
 
 
 ## 📘 Conceptual Readings
