@@ -20,13 +20,6 @@ Q-Learning learns a **Q-value** for each state-action pair. The Q-value represen
 - The agent chooses actions with the **highest Q-values** to maximize long-term rewards.
 - Over time, it improves decision-making by updating a **Q-table**, which stores Q-values for state-action pairs. The Q-table is essentially a memory structure where the agent stores information about which actions yield the best rewards in each state and updates it as it continues to learn. The Q-table helps the agent make informed decisions by showing which actions are likely to lead to better rewards.
 
-
-Structure of a Q-table:
-
-Rows represent the states.
-Columns represent the possible actions.
-Each entry in the table corresponds to the Q-value for a state-action pair.
-
 ---
 
 ## Key Components of Q-Learning
@@ -43,11 +36,9 @@ Each entry in the table corresponds to the Q-value for a state-action pair.
 
 ### III. Temporal Difference (TD) Update Rule
 
-The core Q-value update formula is:
+The core Q-value update (Temporal Difference) formula is:
 
-\[
-Q(S, A) \leftarrow Q(S, A) + \alpha \left( R + \gamma \max_{a'} Q(S', a') - Q(S, A) \right)
-\]
+Q(S, A) ← Q(S, A) + α ( R + γ * max_a′ Q(S′, a′) − Q(S, A) )
 
 Where:
 
@@ -58,15 +49,18 @@ Where:
 | \( S' \) | Next state after taking action \( A \)                                                     |
 | \( a' \) | Possible next actions in state \( S' \) (used to select the best next action)               |
 | \( R \)  | Reward received for taking action \( A \) in state \( S \)                                 |
-| \( \gamma \) (Gamma) | **Discount factor** balancing immediate and future rewards                          |
-| \( \alpha \) (Alpha) | **Learning rate** determining the influence of new information on old Q-values       |
+| (γ) (Gamma) | **Discount factor** balancing immediate and future rewards. A higher value makes the agent consider future rewards more strongly. Between 0 and 1                     |
+| (α) (Alpha) | **Learning rate** determining the influence of new information on old Q-values. A lower value makes learning more stable but slower. Between 0 and 1      |
+
 
 ### 4. ϵ-greedy Policy (Exploration vs. Exploitation)
 
 The agent decides which action to take based on the **ϵ-greedy policy**:
 
-- **Exploitation:** With probability \(1 - \epsilon\), the agent selects the action with the highest Q-value, leveraging its current knowledge to maximize rewards.
-- **Exploration:** With probability \(\epsilon\), the agent chooses a random action, allowing it to explore new strategies and improve its policy over time.
+- **Exploitation:** With probability (1 - ϵ), the agent selects the action with the highest Q-value, leveraging its current knowledge to maximize rewards.
+- **Exploration:** With probability (ϵ), the agent chooses a random action, allowing it to explore new strategies and improve its policy over time.
+
+Controls randomness: higher at first to explore, lower later to exploit learned Q-values.
 
 ---
 
@@ -101,16 +95,13 @@ Q-Learning models follow an iterative process where various components interact 
 
 **II. Exploration:**
    The agent selects an action based on the ϵ-greedy policy, balancing between:
-   - **Exploration:** Choosing a random action with probability \( \epsilon \).
-   - **Exploitation:** Choosing the action with the highest Q-value with probability \( 1 - \epsilon \).
+   - **Exploration:** Choosing a random action with probability ( epsilon ).
+   - **Exploitation:** Choosing the action with the highest Q-value with probability \( 1 - epsilon \).
 
 **III. Action and Update:**
    - The agent performs the selected action.
    - Observes the next state and receives a reward.
-   - Updates the Q-value for the state-action pair using the Temporal Difference (TD) update rule:
-     \[
-     Q(S, A) \leftarrow Q(S, A) + \alpha \left( R + \gamma \max_{a'} Q(S', a') - Q(S, A) \right)
-     \]
+   - Updates the Q-value for the state-action pair using the Temporal Difference (TD) update rule
 
 **IV. Iteration:**
    The process repeats for many episodes until the agent converges on an optimal policy.
@@ -133,9 +124,7 @@ In the context of reinforcement learning, the value function \( V(s) \) represen
 
 Bellman’s equation expresses \( V(s) \) as:
 
-\[
-V(s) = \max_a \left[ R(s, a) + \gamma \sum_{s'} P(s' | s, a) V(s') \right]
-\]
+V(s) = max_a [ R(s, a) + γ × Σ_s' P(s' | s, a) × V(s') ]
 
 Where:
 
