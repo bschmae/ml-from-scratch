@@ -45,10 +45,27 @@ def main():
     elif choice == '3':
         ai_1 = QLearningAlgorithm(ai_symbol=ai_symbol)
     elif choice == '4':
-        print('Training QAlgorithm against RuleBasedModel')
+        print('Training QAlgorithm')
+        print('Pick training opponenet')
+        print('1. RandomAI')
+        print('2. RuleBasedAI')
+        print('3. MinimaxAI')
+
+        opponent_selection = input('>> ').strip()
+        ai_2=None
+        if opponent_selection == '1':
+            ai_2=None
+        elif opponent_selection =='2':
+            ai_1 = RuleBasedModel(
+                ai_symbol=ai_symbol,
+                opponent_symbol=opponent_symbol
+            )
+        elif opponent_selection == '3':
+            ai_1 = MinimaxModel(ai_symbol=ai_symbol)
+
         training.train_q_learning_algorithm(
             ai_1=QLearningAlgorithm(ai_symbol=ai_symbol),
-            ai_2=RuleBasedModel(ai_symbol=opponent_symbol, opponent_symbol=ai_symbol),
+            ai_2=ai_2,
             episodes=args.episodes
         )
 

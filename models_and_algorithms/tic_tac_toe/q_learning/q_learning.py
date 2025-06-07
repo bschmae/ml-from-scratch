@@ -35,7 +35,6 @@ class QLearningAlgorithm():
         best_future_q = max(future_q) if future_q else 0
 
         new_q =  old_q + self.alpha * (reward + self.gamma *  best_future_q - old_q)
-
         self.set(state, action, new_q)
 
     def make_move(self, board):
@@ -44,16 +43,19 @@ class QLearningAlgorithm():
         reward = 0
         board_copy = copy.deepcopy(board)
 
-        # Choose action (exploration or exploitation)
+        # Exploration
         if random.random() < self.epsilon:
             action = random.choice(legal_moves)
-            if self.epsilon > self.min_epsilon:
-                self.epsilon *= self.epsilon_decay_rate
-            self.set(state, action, 0.0)  # Initialize Q-value if unseen
+            self.set(state, action, 0.0)
+        # Exploitation
         else:
             q_values = {tuple(move): self.get(state, tuple(move)) for move in legal_moves}
             best_move = max(q_values, key=q_values.get)
             action = list(best_move)
+
+        # Epsilon decay
+        if self.epsilon > self.min_epsilon:
+            self.epsilon *= self.epsilon_decay_rate
 
         # Apply move to board copy
         board_copy[action[0]][action[1]] = self.ai_symbol
@@ -64,7 +66,7 @@ class QLearningAlgorithm():
         if win_object['isWinner']:
             reward = 1 if win_object['playerSymbol'] == self.ai_symbol else -1
         elif utils.check_if_draw(board_copy):
-            reward = 0.5  # Optional: small reward for draw
+            reward = 0.5
 
         # Update Q-table
         next_legal_moves = [[i, j] for i in range(3) for j in range(3) if board_copy[i][j] == '']
