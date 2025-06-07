@@ -1,6 +1,12 @@
+import sys
+import os
 import random
-from tic_tac_toe import utils
 import copy
+
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+sys.path.append(BASE_DIR)
+from tic_tac_toe import utils
+
 class QLearningAlgorithm():
     def __init__(self, ai_symbol):
         self.q_table = {}
@@ -8,7 +14,7 @@ class QLearningAlgorithm():
         self.alpha = 0.1  # learning rate
         self.epsilon = 1.0 # exploration rate
         self.min_epsilon = 0.1
-        self.epsilon_decay_rate = 0.1
+        self.epsilon_decay_rate = 0.995
         self.ai_symbol = ai_symbol
         self.human_symbol = 'O' if ai_symbol == 'X' else 'X'
 
@@ -36,40 +42,32 @@ class QLearningAlgorithm():
         state = tuple(cell for row in board for cell in row)
         legal_moves = [[i, j] for i in range(3) for j in range(3) if board[i][j] == '']
         reward = 0
-        action = None
         board_copy = copy.deepcopy(board)
 
-        # Exploration - greedy policy
+        # Choose action (exploration or exploitation)
         if random.random() < self.epsilon:
+            action = random.choice(legal_moves)
             if self.epsilon > self.min_epsilon:
-                self.epsilon = self.epsilon * self.epsilon_decay_rate
-                action = random.choice(legal_moves)
+                self.epsilon *= self.epsilon_decay_rate
+            self.set(state, action, 0.0)  # Initialize Q-value if unseen
+        else:
+            q_values = {tuple(move): self.get(state, tuple(move)) for move in legal_moves}
+            best_move = max(q_values, key=q_values.get)
+            action = list(best_move)
 
-                self.set(state, action, 0.0)
-
-        # Exploitation
-        q_values = {}
-        for move in legal_moves:
-            q_values[tuple(move)] = self.get(state, tuple(move))
-            action = list(max(q_values, key=q_values.get))
-
-        # Apply move to board
+        # Apply move to board copy
         board_copy[action[0]][action[1]] = self.ai_symbol
-        new_state_tuple = tuple(cell for row in board_copy for cell in row)
+        new_state = tuple(cell for row in board_copy for cell in row)
 
+        # Check for win/draw in the new state
         win_object = utils.check_if_winner(board_copy)
         if win_object['isWinner']:
             reward = 1 if win_object['playerSymbol'] == self.ai_symbol else -1
         elif utils.check_if_draw(board_copy):
-            reward = 0.5  # Optional: small reward for a draw
-        else:
-            reward = 0  # No reward yet
+            reward = 0.5  # Optional: small reward for draw
 
         # Update Q-table
-        next_legal_moves = \
-            [[i, j] for i in range(3) for j in range(3) if board_copy[i][j] == '']
-        self.temporal_difference(
-            state, action, reward, new_state_tuple, next_legal_moves
-            )
+        next_legal_moves = [[i, j] for i in range(3) for j in range(3) if board_copy[i][j] == '']
+        self.temporal_difference(state, action, reward, new_state, next_legal_moves)
 
         return f'{action[0] + 1} {action[1] + 1}'
