@@ -1,5 +1,6 @@
 import os
 import sys
+import pickle
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 sys.path.append(BASE_DIR)
@@ -27,6 +28,10 @@ class RandomAI:
         move = random.choice(legal_moves)
         return f'{move[0] + 1} {move[1] + 1}'
 
+def save_q_table(q_table):
+    # Save Q-table
+    with open('q_table.pkl', 'wb') as f:
+        pickle.dump(q_table, f)
 
 def train_q_learning_algorithm(episodes, ai_1, ai_2=None):
     ai_1_symbol =  ai_1.get_ai_symbol()
@@ -55,4 +60,14 @@ def train_q_learning_algorithm(episodes, ai_1, ai_2=None):
     print('Opponent: ', ai_2_win_count, ' wins')
     print('Draws: ', draw_count)
 
+    print('Would you like to save the q_table?')
+    select = input('>> ').strip()
+
+    if select == 'y':
+        save_q_table(ai_1.get_q_table())
+        print('q table saved.')
+    elif select == 'n':
+        print('q table not saved.')
+    else:
+        print('q table not saved.')
     return

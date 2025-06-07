@@ -8,8 +8,8 @@ sys.path.append(BASE_DIR)
 from tic_tac_toe import utils
 
 class QLearningAlgorithm():
-    def __init__(self, ai_symbol):
-        self.q_table = {}
+    def __init__(self, ai_symbol, q_table={}):
+        self.q_table = q_table
         self.gamma =  0.9 # discount factor
         self.alpha = 0.1  # learning rate
         self.epsilon = 1.0 # exploration rate
@@ -17,6 +17,9 @@ class QLearningAlgorithm():
         self.epsilon_decay_rate = 0.995
         self.ai_symbol = ai_symbol
         self.human_symbol = 'O' if ai_symbol == 'X' else 'X'
+
+    def get_q_table(self):
+        return self.q_table
 
     def get_ai_symbol(self):
         return self.ai_symbol

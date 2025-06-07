@@ -1,16 +1,23 @@
+import random
+import argparse
+import pickle
 from tic_tac_toe import TicTacToe
 from rule_based.rule_based_model import RuleBasedModel
 from minimax.minimax_model import MinimaxModel
 from q_learning.q_learning import QLearningAlgorithm
 import q_learning.training as training
-import random
-import argparse
 
 SYMBOL_MAP = {
     '1' : 'O',
     '2' : 'X'
 }
 
+
+def load_q_table():
+    # Load Q-table
+    with open('q_table.pkl', 'rb') as f:
+        q_table = pickle.load(f)
+        return q_table
 
 def main():
     game = TicTacToe()
@@ -41,9 +48,9 @@ def main():
         )
     elif choice == '2':
         ai_1 = MinimaxModel(ai_symbol=ai_symbol)
-
     elif choice == '3':
-        ai_1 = QLearningAlgorithm(ai_symbol=ai_symbol)
+        q_table = load_q_table()
+        ai_1 = QLearningAlgorithm(ai_symbol=ai_symbol, q_table=q_table)
     elif choice == '4':
         print('Training QAlgorithm')
         print('Pick training opponenet')
