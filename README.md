@@ -1,4 +1,4 @@
-# AI Model Playground 🤖
+# AI Model Playground 
 
 A collection of fun, educational machine learning models I've built from scratch.
 
@@ -10,7 +10,7 @@ A collection of fun, educational machine learning models I've built from scratch
 | Tic-Tac-Toe | Exploring several models to play Tic-Tac-Toe | [View](models_and_algorithms/tic_tac_toe/README.md) |
 
 
-## 📘 Conceptual Readings
+## Conceptual Readings
 
 | Topic                 | Description                                | Docs |
 |----------------------|--------------------------------------------|------|
